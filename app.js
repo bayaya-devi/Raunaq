@@ -2,6 +2,7 @@
 const translations = {
   ar: {
     dir: 'rtl',
+    language: { short: '\u0639' },
     brand: { name: '\u0631\u0648\u0646\u0642' },
     nav: { shop: '\u062a\u0633\u0648\u0642', benefits: '\u0627\u0644\u0641\u0648\u0627\u0626\u062f', ingredients: '\u0627\u0644\u0645\u0643\u0648\u0646\u0627\u062a', faq: '\u0627\u0644\u0623\u0633\u0626\u0644\u0629', contact: '\u062a\u0648\u0627\u0635\u0644', cta: '\u0627\u0637\u0644\u0628 \u0627\u0644\u0622\u0646' },
     hero: { eyebrow: '\u0627\u0644\u0645\u062a\u062c\u0631 \u0627\u0644\u0631\u0633\u0645\u064a', title: '\u0631\u0648\u0646\u0642\u060c \u0627\u0644\u062e\u0644\u0637\u0629 \u0627\u0644\u0645\u0644\u0643\u064a\u0629 \u0644\u0644\u0631\u062c\u0644 \u0627\u0644\u0639\u0635\u0631\u064a', copy: '\u0645\u0643\u0645\u0644 \u063a\u0630\u0627\u0626\u064a \u0637\u0628\u064a\u0639\u064a \u0628\u062a\u062c\u0631\u0628\u0629 \u0634\u0631\u0627\u0621 \u0648\u0627\u0636\u062d\u0629\u060c \u0635\u0648\u0631 \u0641\u0627\u062e\u0631\u0629\u060c \u0648\u0637\u0644\u0628 \u0633\u0631\u064a\u0639.', buy: '\u0634\u0631\u0627\u0621 \u0627\u0644\u0645\u0646\u062a\u062c', learn: '\u0627\u0643\u062a\u0634\u0641 \u0627\u0644\u062a\u0631\u0643\u064a\u0628\u0629' },
@@ -20,7 +21,7 @@ const translations = {
     footer: { copy: '\u00a9 2026 \u0631\u0648\u0646\u0642. \u062c\u0645\u064a\u0639 \u0627\u0644\u062d\u0642\u0648\u0642 \u0645\u062d\u0641\u0648\u0638\u0629.' }
   },
   fr: {
-    dir: 'ltr', brand: { name: 'RAUNAQ' },
+    dir: 'ltr', language: { short: 'FR' }, brand: { name: 'RAUNAQ' },
     nav: { shop: 'Boutique', benefits: 'Bénéfices', ingredients: 'Ingrédients', faq: 'FAQ', contact: 'Contact', cta: 'Commander' },
     hero: { eyebrow: 'Boutique officielle', title: 'RAUNAQ, la formule royale pour l’homme moderne', copy: 'Un complément naturel premium avec une expérience d’achat claire, élégante et rapide.', buy: 'Acheter le produit', learn: 'Voir la formule' },
     trust: { naturalValue: '250 g', natural: 'Poids net', jarValue: '390 DH', jar: 'Prix transparent', preservativesValue: '4', preservatives: 'Langues disponibles' },
@@ -37,8 +38,8 @@ const translations = {
     sticky: { title: 'RAUNAQ 250 g', copy: 'La formule royale est disponible', button: 'Commander' }, footer: { copy: '\u00a9 2026 RAUNAQ. Tous droits réservés.' }
   },
   en: {
-    dir: 'ltr', brand: { name: 'RAUNAQ' },
-    nav: { shop: 'Shop', benefits: 'Benefits', ingredients: 'Ingrédients', faq: 'FAQ', contact: 'Contact', cta: 'Order' },
+    dir: 'ltr', language: { short: 'EN' }, brand: { name: 'RAUNAQ' },
+    nav: { shop: 'Shop', benefits: 'Benefits', ingredients: 'Ingredients', faq: 'FAQ', contact: 'Contact', cta: 'Order' },
     hero: { eyebrow: 'Official store', title: 'RAUNAQ, the royal formula for modern men', copy: 'A premium natural supplement with a clean, elegant and fast shopping experience.', buy: 'Buy product', learn: 'Explore formula' },
     trust: { naturalValue: '250 g', natural: 'Net weight', jarValue: '390 DH', jar: 'Transparent price', preservativesValue: '4', preservatives: 'Available languages' },
     buy: { rating: '250 g format | Direct order', title: 'RAUNAQ Royal Formula', copy: '250g jar with a carefully selected natural formula. Choose quantity and confirm your order.', price: '390 DH', oldPrice: '420 DH', unitLabel: 'Unit price', totalLabel: 'Total', qty: 'Quantity', button: 'Order', note: '', notice: 'Note: this product is not medicine and does not replace professional medical advice.' },
@@ -54,7 +55,7 @@ const translations = {
     sticky: { title: 'RAUNAQ 250 g', copy: 'The royal formula is available', button: 'Order' }, footer: { copy: '\u00a9 2026 RAUNAQ. All rights reserved.' }
   },
   es: {
-    dir: 'ltr', brand: { name: 'RAUNAQ' },
+    dir: 'ltr', language: { short: 'ES' }, brand: { name: 'RAUNAQ' },
     nav: { shop: 'Tienda', benefits: 'Beneficios', ingredients: 'Ingredientes', faq: 'FAQ', contact: 'Contacto', cta: 'Pedir' },
     hero: { eyebrow: 'Tienda oficial', title: 'RAUNAQ, la formula real para el hombre moderno', copy: 'Un suplemento natural premium con una experiencia de compra clara, elegante y rapida.', buy: 'Comprar producto', learn: 'Ver formula' },
     trust: { naturalValue: '250 g', natural: 'Peso neto', jarValue: '390 DH', jar: 'Precio transparente', preservativesValue: '4', preservatives: 'Idiomas disponibles' },
@@ -74,6 +75,9 @@ const translations = {
 
 function getValue(obj,path){return path.split('.').reduce((a,k)=>a&&a[k],obj)}
 const select=document.getElementById('langSelect');
+const langButton=document.getElementById('langButton');
+const langMenu=document.getElementById('langMenu');
+const langCurrent=document.getElementById('langCurrent');
 const qty=document.getElementById('qty');
 const plus=document.getElementById('plus');
 const minus=document.getElementById('minus');
@@ -106,7 +110,7 @@ function currentTranslation(){return translations[select.value]||translations.ar
 function fromLocalizedDigits(value){return String(value).replace(/[0-9]/g,d=>String(d.charCodeAt(0)-0x0660))}
 function normalizeQuantity(){const value=Math.max(1,Math.min(99,parseInt(fromLocalizedDigits(qty.value),10)||1));qty.value=String(value);return value}
 function formatPrice(value,lang){return lang==='ar'?value+' \u062f\u0631\u0647\u0645':value+' DH'}
-function updateOrderSummary(){if(!orderSummary||!qty)return;const amount=normalizeQuantity();const total=390*amount;if(totalPrice)totalPrice.textContent=formatPrice(total,select.value);orderSummary.textContent=select.value==='ar'?`${translations.ar.brand.name} 250 \u063a × ${amount} • ${formatPrice(total,'ar')}`:`RAUNAQ 250 g × ${amount} • ${formatPrice(total,select.value)}`}function applyLang(lang){const t=translations[lang]||translations.ar;document.documentElement.lang=lang;document.documentElement.dir=t.dir;document.body.dir=t.dir;document.title=`${t.brand.name} | ${t.nav.shop}`;document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=getValue(t,el.dataset.i18n)||''});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.placeholder=getValue(t,el.dataset.i18nPlaceholder)||''});qty.setAttribute('aria-label',t.buy.qty);chatToggle.setAttribute('aria-label',t.chat.button);setStoredLanguage(lang);updateOrderSummary();resetChat(true)}
+function updateOrderSummary(){if(!orderSummary||!qty)return;const amount=normalizeQuantity();const total=390*amount;if(totalPrice)totalPrice.textContent=formatPrice(total,select.value);orderSummary.textContent=select.value==='ar'?`${translations.ar.brand.name} 250 \u063a × ${amount} • ${formatPrice(total,'ar')}`:`RAUNAQ 250 g × ${amount} • ${formatPrice(total,select.value)}`}function applyLang(lang){const t=translations[lang]||translations.ar;document.documentElement.lang=lang;document.documentElement.dir=t.dir;document.body.dir=t.dir;document.title=`${t.brand.name} | ${t.nav.shop}`;document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=getValue(t,el.dataset.i18n)||''});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.placeholder=getValue(t,el.dataset.i18nPlaceholder)||''});qty.setAttribute('aria-label',t.buy.qty);langCurrent.textContent=t.language.short;langButton.setAttribute('aria-label',t.language.short);chatToggle.setAttribute('aria-label',t.chat.button);setStoredLanguage(lang);updateOrderSummary();resetChat(true)}
 function openOrderModal(){updateOrderSummary();orderStatus.textContent='';orderStatus.className='mini';orderModal.classList.add('open');orderModal.setAttribute('aria-hidden','false');document.body.classList.add('modal-lock');setTimeout(()=>customerName.focus(),0)}
 function closeOrderModal(){orderModal.classList.remove('open');orderModal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-lock');orderButton.focus()}
 function buildOrderPayload(){return{product:{sku:'RAUNAQ-ROYAL-250G',name:'RAUNAQ Royal Formula',quantity:normalizeQuantity(),displayPrice:currentTranslation().buy.price},customer:{name:customerName.value.trim(),phone:customerPhone.value.trim(),city:customerCity.value.trim(),note:customerNote.value.trim()},locale:select.value,source:'github-pages-frontend',createdAt:new Date().toISOString()}}
@@ -117,6 +121,10 @@ function answerChat(message){const text=message.toLowerCase();const t=currentTra
 removeLegacyOrderData();
 select.value=getStoredLanguage();
 select.addEventListener('change',()=>applyLang(select.value));
+langButton.addEventListener('click',()=>{const open=!langMenu.classList.contains('open');langMenu.classList.toggle('open',open);langButton.setAttribute('aria-expanded',String(open))});
+document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>{select.value=button.dataset.language;applyLang(select.value);langMenu.classList.remove('open');langButton.setAttribute('aria-expanded','false');langButton.focus()}));
+document.addEventListener('click',event=>{if(!event.target.closest('.language-switcher')){langMenu.classList.remove('open');langButton.setAttribute('aria-expanded','false')}});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){langMenu.classList.remove('open');langButton.setAttribute('aria-expanded','false')}});
 plus.addEventListener('click',()=>{qty.value=String(normalizeQuantity()+1);normalizeQuantity();applyLang(select.value)});
 minus.addEventListener('click',()=>{qty.value=String(normalizeQuantity()-1);normalizeQuantity();applyLang(select.value)});
 qty.addEventListener('input',()=>{normalizeQuantity();applyLang(select.value)});
