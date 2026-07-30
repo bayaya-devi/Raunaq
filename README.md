@@ -21,7 +21,7 @@ Le site est statique et ne traite pas encore de paiement directement. Les protec
 - Permissions policy désactivant caméra, micro, géolocalisation, paiement natif et USB.
 - Pas de `innerHTML`, pas de `eval`, pas de dépendances JavaScript tierces.
 
-Pour une vraie boutique avec paiement, utilisez Stripe Checkout, Shopify ou WooCommerce au lieu de collecter les cartes bancaires sur GitHub Pages.
+Pour une vraie boutique avec paiement, branchez un backend de commande sécurisé et un prestataire de paiement certifié, sans collecter les cartes bancaires directement sur GitHub Pages.
 
 ## Voir en local
 

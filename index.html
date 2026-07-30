@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="RAUNAQ boutique officielle - complément alimentaire naturel premium pour la vitalité quotidienne.">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self' mailto:; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()">
 <meta name="theme-color" content="#14322b">
 <link rel="manifest" href="site.webmanifest">
@@ -20,13 +20,36 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body dir="rtl">
-<nav class="nav"><div class="container nav-inner"><a class="brand" href="#top"><img src="Logo.png" alt="RAUNAQ"><span>RAUNAQ</span></a><div class="nav-links"><a href="#buy" data-i18n="nav.shop"></a><a href="#benefits" data-i18n="nav.benefits"></a><a href="#ingredients" data-i18n="nav.ingredients"></a><a href="#faq" data-i18n="nav.faq"></a></div><div class="nav-actions"><div class="lang-wrap"><select class="lang-select" id="langSelect" aria-label="Language"><option value="ar">العربية</option><option value="fr">Français</option><option value="en">English</option><option value="es">Español</option></select></div><a class="btn btn-primary" href="#buy" data-i18n="nav.cta"></a></div></div></nav>
+<nav class="nav"><div class="container nav-inner"><a class="brand" href="#top"><img src="Logo.png" alt="RAUNAQ"><span>RAUNAQ</span></a><div class="nav-links"><a href="#buy" data-i18n="nav.shop"></a><a href="#benefits" data-i18n="nav.benefits"></a><a href="#ingredients" data-i18n="nav.ingredients"></a><a href="#faq" data-i18n="nav.faq"></a><a href="#contact" data-i18n="nav.contact"></a></div><div class="nav-actions"><div class="lang-wrap"><select class="lang-select" id="langSelect" aria-label="Language"><option value="ar">العربية</option><option value="fr">Français</option><option value="en">English</option><option value="es">Español</option></select></div><a class="btn btn-primary" href="#buy" data-i18n="nav.cta"></a></div></div></nav>
 <header class="hero" id="top"><div class="container hero-grid"><div><div class="eyebrow" data-i18n="hero.eyebrow"></div><h1 data-i18n="hero.title"></h1><p class="hero-copy" data-i18n="hero.copy"></p><div class="hero-actions"><a href="#buy" class="btn btn-primary" data-i18n="hero.buy"></a><a href="#ingredients" class="btn btn-ghost" data-i18n="hero.learn"></a></div><div class="trust-row"><div class="trust-pill"><strong>100%</strong><span data-i18n="trust.natural"></span></div><div class="trust-pill"><strong>250g</strong><span data-i18n="trust.jar"></span></div><div class="trust-pill"><strong>0</strong><span data-i18n="trust.preservatives"></span></div></div></div><div class="product-stage"><img src="A.png" alt="RAUNAQ product"></div></div></header>
 <section class="buy" id="buy"><div class="container buy-grid"><div class="gallery"><figure><img src="A.png" alt="RAUNAQ packaging"></figure><figure><img src="Logo.png" alt="RAUNAQ logo"></figure><figure><img src="R.png" alt="RAUNAQ ingredients"></figure></div><div class="offer"><div class="rating" data-i18n="buy.rating"></div><h2 data-i18n="buy.title"></h2><p data-i18n="buy.copy"></p><div class="price-row"><div class="price" data-i18n="buy.price"></div><div class="old-price" data-i18n="buy.oldPrice"></div></div><label class="label" for="qty" data-i18n="buy.qty"></label><div class="qty"><button type="button" id="minus">−</button><input id="qty" value="1" inputmode="numeric" aria-label="Quantity"><button type="button" id="plus">+</button></div><button class="btn btn-primary" id="orderButton" type="button" data-i18n="buy.button"></button><p class="mini" data-i18n="buy.note"></p><div class="notice" data-i18n="buy.notice"></div></div></div></section>
 <section id="benefits"><div class="container"><div class="section-head"><div class="kicker" data-i18n="benefits.kicker"></div><h2 data-i18n="benefits.title"></h2><p data-i18n="benefits.copy"></p></div><div class="cards"><article class="card"><img src="B.png" alt=""><h3 data-i18n="cards.a.title"></h3><p data-i18n="cards.a.copy"></p></article><article class="card"><img src="C.png" alt=""><h3 data-i18n="cards.b.title"></h3><p data-i18n="cards.b.copy"></p></article><article class="card"><img src="E.png" alt=""><h3 data-i18n="cards.c.title"></h3><p data-i18n="cards.c.copy"></p></article><article class="card"><img src="f.png" alt=""><h3 data-i18n="cards.d.title"></h3><p data-i18n="cards.d.copy"></p></article></div></div></section>
 <section id="ingredients" class="buy"><div class="container split"><div class="split-media"><img src="R.png" alt="Natural ingredients"></div><div><div class="kicker" data-i18n="ingredients.kicker"></div><h2 data-i18n="ingredients.title"></h2><p data-i18n="ingredients.copy"></p><div class="badges"><span class="badge" data-i18n="ingredients.b1"></span><span class="badge" data-i18n="ingredients.b2"></span><span class="badge" data-i18n="ingredients.b3"></span></div><div class="notice" data-i18n="ingredients.warning"></div></div></div></section>
 <section><div class="container split"><div><div class="kicker" data-i18n="pack.kicker"></div><h2 data-i18n="pack.title"></h2><p data-i18n="pack.copy"></p><div class="badges"><span class="badge" data-i18n="pack.b1"></span><span class="badge" data-i18n="pack.b2"></span><span class="badge" data-i18n="pack.b3"></span></div></div><div class="split-media"><img src="o.png" alt="Usage advice"></div></div></section>
 <section class="faq" id="faq"><div class="container"><div class="section-head"><div class="kicker" data-i18n="faq.kicker"></div><h2 data-i18n="faq.title"></h2></div><div class="faq-list"><details open><summary data-i18n="faq.q1"></summary><p data-i18n="faq.a1"></p></details><details><summary data-i18n="faq.q2"></summary><p data-i18n="faq.a2"></p></details><details><summary data-i18n="faq.q3"></summary><p data-i18n="faq.a3"></p></details></div></div></section>
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <div class="kicker" data-i18n="contact.kicker"></div>
+      <h2 data-i18n="contact.title"></h2>
+      <p data-i18n="contact.copy"></p>
+    </div>
+    <div class="social-grid">
+      <a class="social-link whatsapp" href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><span>WA</span><strong>WhatsApp</strong></a>
+      <a class="social-link instagram" href="https://www.instagram.com/raunaq" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><span>IG</span><strong>Instagram</strong></a>
+      <a class="social-link facebook" href="https://www.facebook.com/raunaq" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><span>FB</span><strong>Facebook</strong></a>
+      <a class="social-link tiktok" href="https://www.tiktok.com/@raunaq" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><span>TT</span><strong>TikTok</strong></a>
+    </div>
+  </div>
+</section>
+<div class="chatbot" id="chatbot">
+  <button class="chat-toggle" id="chatToggle" type="button" aria-expanded="false"><span>RA</span><strong data-i18n="chat.button"></strong></button>
+  <section class="chat-panel" id="chatPanel" aria-hidden="true">
+    <div class="chat-head"><div><strong>RAUNAQ</strong><span data-i18n="chat.subtitle"></span></div><button type="button" id="chatClose" aria-label="Close">×</button></div>
+    <div class="chat-log" id="chatLog"></div>
+    <form class="chat-form" id="chatForm"><input id="chatInput" autocomplete="off" data-i18n-placeholder="chat.placeholder"><button type="submit" data-i18n="chat.send"></button></form>
+  </section>
+</div>
 <div class="modal" id="orderModal" aria-hidden="true">
   <div class="modal-backdrop" data-close-order></div>
   <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="orderTitle">
