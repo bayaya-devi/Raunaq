@@ -1,3 +1,4 @@
 'use strict';
-// Leave blank on GitHub Pages. After moving the storefront to Cloudflare, use '/api/orders'.
-window.RAUNAQ_API_ENDPOINT = '';
+// Public Cloudflare Worker endpoint and Turnstile site key; neither value is secret.
+window.RAUNAQ_API_ENDPOINT = 'https://raunaq-api.aetbconseil.workers.dev/api/orders';
+window.RAUNAQ_TURNSTILE_SITE_KEY = '0x4AAAAAAEBiHycwWa5Zymph';

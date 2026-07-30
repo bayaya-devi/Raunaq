@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="RAUNAQ boutique officielle - complément alimentaire naturel RAUNAQ, format 250 g et commande directe.">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self' https://challenges.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://raunaq-api.aetbconseil.workers.dev; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()">
 <meta name="theme-color" content="#14322b">
 <link rel="canonical" href="https://bayaya-devi.github.io/Raunaq/">
@@ -67,7 +67,7 @@
       <label><span data-i18n="order.phone"></span><input id="customerPhone" name="phone" autocomplete="tel" inputmode="tel" minlength="8" maxlength="20" required></label>
       <label><span data-i18n="order.city"></span><input id="customerCity" name="city" autocomplete="address-level2" minlength="2" maxlength="80" required></label>
       <label><span data-i18n="order.note"></span><textarea id="customerNote" name="note" rows="3" maxlength="500"></textarea></label>
-      <div class="order-summary"><strong data-i18n="order.summary"></strong><span id="orderSummary"></span></div>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAEBiHycwWa5Zymph" data-theme="light" data-size="flexible"></div><div class="order-summary"><strong data-i18n="order.summary"></strong><span id="orderSummary"></span></div>
       <button class="btn btn-primary" type="submit" data-i18n="order.submit"></button>
       <p class="mini" id="orderStatus" role="status" aria-live="polite"></p>
     </form>
@@ -75,6 +75,7 @@
 </div>
 <div class="sticky" id="sticky"><div class="container"><div class="sticky-product"><img src="assets/A-cutout.png" alt=""><div><strong data-i18n="sticky.title"></strong><br><span data-i18n="sticky.copy"></span></div></div><a href="#buy" class="btn btn-primary" data-i18n="sticky.button"></a></div></div>
 <footer class="footer"><div class="container"><div class="brand footer-brand" data-i18n="brand.name"></div><p data-i18n="footer.copy"></p></div></footer>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="seo-data.js" defer></script>
 <script src="api-config.js" defer></script>
 <script src="analytics.js" defer></script>

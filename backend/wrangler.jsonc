@@ -7,7 +7,7 @@
     {
       "binding": "DB",
       "database_name": "raunaq",
-      "database_id": "REPLACE_WITH_WRANGLER_D1_DATABASE_ID"
+      "database_id": "c057526b-1d75-473d-9d6a-bdf220006326"
     }
   ],
   "queues": {
