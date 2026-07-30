@@ -1,51 +1,44 @@
-# RAUNAQ (رونق) — الخلطة الملكية
+# RAUNAQ - boutique officielle
 
-Landing page premium pour la marque de compléments alimentaires naturels **RAUNAQ**, destinée aux hommes de 25 à 45 ans.
+Site e-commerce statique premium pour **RAUNAQ**, avec expérience multilingue arabe, français, anglais et espagnol.
 
-## Contenu
+## Fichiers principaux
 
-- `index.html` — page unique (one-page), en arabe (RTL), avec navigation transparente sticky, animations au scroll et barre de commande fixe.
-- `images/` — visuels du produit, des bénéfices, des ingrédients et de la marque.
+- `index.html` - structure HTML, SEO, CSP et balises de sécurité navigateur.
+- `styles.css` - design responsive moderne, sections boutique, bénéfices, ingrédients, FAQ et barre d'achat sticky.
+- `app.js` - traduction multilingue, changement RTL/LTR, quantité produit et lien de commande.
+- `site.webmanifest` - configuration web app/mobile.
+- `A.png`, `Logo.png`, `B.png`, `C.png`, `E.png`, `f.png`, `R.png`, `o.png` - visuels produit et marque.
 
-## Utilisation
+## Sécurité et protection
 
-Aucune installation nécessaire : c'est un site statique HTML/CSS/JS pur (aucune dépendance à builder).
+Le site est statique et ne traite pas encore de paiement directement. Les protections ajoutées sont adaptées à GitHub Pages :
 
-### Voir en local
-Ouvrez simplement `index.html` dans un navigateur, ou lancez un petit serveur local :
+- Content Security Policy restrictive via balise meta.
+- JavaScript et CSS séparés pour éviter les scripts/styles inline.
+- Blocage des objets embarqués et limitation des sources externes.
+- Referrer policy `strict-origin-when-cross-origin`.
+- Permissions policy désactivant caméra, micro, géolocalisation, paiement natif et USB.
+- Pas de `innerHTML`, pas de `eval`, pas de dépendances JavaScript tierces.
+
+Pour une vraie boutique avec paiement, utilisez Stripe Checkout, Shopify ou WooCommerce au lieu de collecter les cartes bancaires sur GitHub Pages.
+
+## Voir en local
+
+Ouvrez `index.html` dans un navigateur, ou lancez :
 
 ```bash
-python3 -m http.server 8000
+python -m http.server 8000
 ```
 
 puis ouvrez `http://localhost:8000`.
 
-### Déployer avec GitHub Pages
+## Déploiement GitHub Pages
 
-1. Poussez ce dossier dans un repo GitHub.
-2. Allez dans **Settings → Pages**.
-3. Source : **branche `main`**, dossier **`/ (root)`**.
-4. Le site sera disponible à `https://<votre-utilisateur>.github.io/<nom-du-repo>/`.
+Le site est prévu pour être servi depuis la branche `main`, dossier racine `/`.
 
-## Structure
+URL actuelle : `https://bayaya-devi.github.io/Raunaq/`
 
-```
-.
-├── index.html
-├── README.md
-└── images/
-    ├── A.png   (produit / packaging)
-    ├── B.png   (fertilité)
-    ├── C.png   (énergie)
-    ├── E.png   (stress / mood)
-    ├── f.png   (immunité)
-    ├── Logo.png
-    ├── R.png   (ingrédients)
-    └── o.png   (avertissement)
-```
+## Préparation backend
 
-## Personnalisation
-
-- **Couleurs & typographies** : variables CSS définies en haut du fichier `index.html` (`:root`).
-- **Textes** : directement dans le HTML, sections balisées par commentaires (`<!-- HERO -->`, `<!-- BENEFITS -->`, etc.).
-- **Lien du bouton "اطلب الآن"** : actuellement en `href="#"` — à remplacer par le lien Shopify / checkout réel.
+Le formulaire de commande fonctionne aujourd’hui côté frontend : il génère une référence locale et prépare un payload JSON structuré. Quand un backend sera disponible, renseignez `ORDER_API_ENDPOINT` dans `app.js` avec l’URL API de création de commande. Le payload contient `product`, `customer`, `locale`, `source` et `createdAt`.
