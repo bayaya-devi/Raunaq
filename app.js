@@ -1,4 +1,4 @@
-﻿const translations = {
+const translations = {
   ar: {
     dir: 'rtl',
     nav: { shop: 'تسوق', benefits: 'الفوائد', ingredients: 'المكونات', faq: 'الأسئلة', contact: 'تواصل', cta: 'اطلب الآن' },
@@ -91,8 +91,11 @@ const chatLog=document.getElementById('chatLog');
 const chatForm=document.getElementById('chatForm');
 const chatInput=document.getElementById('chatInput');
 const ORDER_API_ENDPOINT='';
+const isMobilePage=location.pathname.toLowerCase().endsWith('mobile.html');
+try{if(!isMobilePage&&matchMedia('(max-width: 760px)').matches&&sessionStorage.getItem('raunaqForceDesktop')!=='1')location.replace('mobile.html')}catch{}
 
-function getStoredLanguage(){try{return localStorage.getItem('raunaqLang')||'ar'}catch{return 'ar'}}
+function detectLanguage(){const supported=['ar','fr','en','es'];const langs=[navigator.language,...(navigator.languages||[])].filter(Boolean).map(lang=>lang.slice(0,2).toLowerCase());return langs.find(lang=>supported.includes(lang))||'ar'}
+function getStoredLanguage(){try{const stored=localStorage.getItem('raunaqLang');return ['ar','fr','en','es'].includes(stored)?stored:detectLanguage()}catch{return detectLanguage()}}
 function setStoredLanguage(lang){try{localStorage.setItem('raunaqLang',lang)}catch{}}
 function currentTranslation(){return translations[select.value]||translations.ar}
 function normalizeQuantity(){const value=Math.max(1,Math.min(99,parseInt(qty.value,10)||1));qty.value=String(value);return value}
@@ -119,3 +122,6 @@ chatClose.addEventListener('click',()=>{chatPanel.classList.remove('open');chatP
 chatForm.addEventListener('submit',event=>{event.preventDefault();const message=chatInput.value.trim();if(!message)return;addChatMessage(message,'user');chatInput.value='';setTimeout(()=>addChatMessage(answerChat(message)),220)});
 window.addEventListener('scroll',()=>{sticky.classList.toggle('show',window.scrollY>window.innerHeight*.65);document.documentElement.style.setProperty('--parallax',String(Math.min(80,window.scrollY*.04)))},{passive:true});
 applyLang(select.value);
+
+const desktopVersion=document.getElementById('desktopVersion');
+if(desktopVersion){desktopVersion.addEventListener('click',()=>{try{sessionStorage.setItem('raunaqForceDesktop','1')}catch{}})}
