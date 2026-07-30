@@ -73,7 +73,14 @@ const translations = {
   }
 };
 
-function getValue(obj,path){return path.split('.').reduce((a,k)=>a&&a[k],obj)}
+Object.assign(translations.ar.faq,{a1:'اضغط اطلب الآن، املأ بياناتك، ثم أكد الطلب. يحصل طلبك على مرجع للمتابعة.',q3:'كيف أتابع طلبي؟',a3:'بعد التأكيد تحصل على مرجع طلب. احتفظ به عند التواصل معنا.'});
+Object.assign(translations.ar.order,{kicker:'طلب مباشر',copy:'أدخل بياناتك لتأكيد الطلب بأمان. ستظهر لك مرجعية الطلب بعد التسجيل.',success:'تم تسجيل طلبك. المرجع: ',error:'تعذر تسجيل الطلب. تحقق من اتصالك ثم حاول مجددًا.'});
+Object.assign(translations.fr.faq,{a1:'Cliquez sur Commander, renseignez vos informations, puis validez. Une référence est créée pour le suivi.',q3:'Comment suivre ma commande ?',a3:'Après validation, une référence de commande est affichée. Conservez-la pour tout échange avec nous.'});
+Object.assign(translations.fr.order,{kicker:'Commande directe',copy:'Renseignez vos informations pour transmettre votre commande de manière sécurisée. Une référence s’affiche après son enregistrement.',success:'Commande enregistrée. Référence : ',error:'La commande n’a pas pu être enregistrée. Vérifiez votre connexion puis réessayez.'});
+Object.assign(translations.en.faq,{a1:'Click Order, enter your details, then confirm. A reference is created for follow-up.',q3:'How do I follow my order?',a3:'After confirmation, an order reference is displayed. Keep it for any follow-up with us.'});
+Object.assign(translations.en.order,{kicker:'Direct order',copy:'Enter your details to send your order securely. A reference is displayed once it is recorded.',success:'Order recorded. Reference: ',error:'Your order could not be recorded. Check your connection and try again.'});
+Object.assign(translations.es.faq,{a1:'Haz clic en Pedir, completa tus datos y confirma. Se crea una referencia para el seguimiento.',q3:'¿Cómo sigo mi pedido?',a3:'Tras la confirmación se muestra una referencia. Consérvala para cualquier seguimiento.'});
+Object.assign(translations.es.order,{kicker:'Pedido directo',copy:'Completa tus datos para enviar el pedido de forma segura. Verás una referencia al registrarse.',success:'Pedido registrado. Referencia: ',error:'No se pudo registrar el pedido. Comprueba tu conexión e inténtalo de nuevo.'});function getValue(obj,path){return path.split('.').reduce((a,k)=>a&&a[k],obj)}
 const select=document.getElementById('langSelect');
 const langButton=document.getElementById('langButton');
 const langMenu=document.getElementById('langMenu');
@@ -92,12 +99,15 @@ const customerName=document.getElementById('customerName');
 const customerPhone=document.getElementById('customerPhone');
 const customerCity=document.getElementById('customerCity');
 const customerNote=document.getElementById('customerNote');
+const orderSubmit=document.getElementById('orderSubmit');
 const chatToggle=document.getElementById('chatToggle');
 const chatPanel=document.getElementById('chatPanel');
 const chatClose=document.getElementById('chatClose');
 const chatLog=document.getElementById('chatLog');
 const chatForm=document.getElementById('chatForm');
 const chatInput=document.getElementById('chatInput');
+const mobileMenuButton=document.getElementById('mobileMenuButton');
+const mobileDrawer=document.getElementById('mobileDrawer');
 const ORDER_API_ENDPOINT=globalThis.RAUNAQ_API_ENDPOINT||'';
 const isMobilePage=location.pathname.toLowerCase().endsWith('mobile.html');
 try{const compact=matchMedia('(max-width: 760px)').matches;if(!isMobilePage&&compact)location.replace('mobile.html');if(isMobilePage&&!compact)location.replace('index.html')}catch(error){console.warn('Responsive page selection failed',error)}
@@ -129,10 +139,11 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'){langMenu.cl
 plus.addEventListener('click',()=>{qty.value=String(normalizeQuantity()+1);normalizeQuantity();applyLang(select.value)});
 minus.addEventListener('click',()=>{qty.value=String(normalizeQuantity()-1);normalizeQuantity();applyLang(select.value)});
 qty.addEventListener('input',()=>{normalizeQuantity();applyLang(select.value)});
+function closeMobileMenu(){if(!mobileDrawer||!mobileMenuButton)return;mobileDrawer.classList.remove('open');mobileDrawer.setAttribute('aria-hidden','true');mobileMenuButton.setAttribute('aria-expanded','false');document.body.classList.remove('modal-lock')}if(mobileMenuButton&&mobileDrawer){mobileMenuButton.addEventListener('click',()=>{const open=!mobileDrawer.classList.contains('open');mobileDrawer.classList.toggle('open',open);mobileDrawer.setAttribute('aria-hidden',String(!open));mobileMenuButton.setAttribute('aria-expanded',String(open));document.body.classList.toggle('modal-lock',open);if(open)mobileDrawer.querySelector('.mobile-drawer-close')?.focus()});mobileDrawer.querySelectorAll('[data-close-mobile-menu],a').forEach(item=>item.addEventListener('click',closeMobileMenu));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&mobileDrawer.classList.contains('open')){closeMobileMenu();mobileMenuButton.focus()}})}
 orderButton.addEventListener('click',openOrderModal);
 document.querySelectorAll('[data-close-order]').forEach(el=>el.addEventListener('click',closeOrderModal));
 document.addEventListener('keydown',event=>{if(!orderModal.classList.contains('open'))return;if(event.key==='Escape'){closeOrderModal();return}if(event.key==='Tab'){const focusable=[...orderModal.querySelectorAll('button,input,textarea,[href],[tabindex]:not([tabindex="-1"])')].filter(el=>!el.disabled);const first=focusable[0];const last=focusable[focusable.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}}});
-orderForm.addEventListener('submit',async event=>{event.preventDefault();const t=currentTranslation();orderStatus.textContent='';orderStatus.className='mini';try{const result=await submitOrder(buildOrderPayload());const visibleReference=result.reference||'OK';orderStatus.textContent=t.order.success+visibleReference;orderStatus.classList.add('modal-success');orderForm.reset()}catch(error){console.error('Order submission failed',error);orderStatus.textContent=t.order.error;orderStatus.classList.add('modal-error')}});
+orderForm.addEventListener('submit',async event=>{event.preventDefault();const t=currentTranslation();orderStatus.textContent='';orderStatus.className='mini';if(orderSubmit){orderSubmit.disabled=true;orderSubmit.setAttribute('aria-busy','true')}try{const result=await submitOrder(buildOrderPayload());const visibleReference=result.reference||'OK';orderStatus.textContent=t.order.success+visibleReference;orderStatus.classList.add('modal-success');orderForm.reset();globalThis.turnstile?.reset()}catch(error){console.error('Order submission failed',error);orderStatus.textContent=t.order.error;orderStatus.classList.add('modal-error')}finally{if(orderSubmit){orderSubmit.disabled=false;orderSubmit.removeAttribute('aria-busy')}}});
 chatToggle.addEventListener('click',()=>{const open=!chatPanel.classList.contains('open');chatPanel.classList.toggle('open',open);chatPanel.setAttribute('aria-hidden',String(!open));chatToggle.setAttribute('aria-expanded',String(open));if(open&&chatLog.children.length===0)resetChat()});
 chatClose.addEventListener('click',()=>{chatPanel.classList.remove('open');chatPanel.setAttribute('aria-hidden','true');chatToggle.setAttribute('aria-expanded','false')});
 chatForm.addEventListener('submit',event=>{event.preventDefault();const message=chatInput.value.trim();if(!message)return;addChatMessage(message,'user');chatInput.value='';setTimeout(()=>addChatMessage(answerChat(message)),220)});
